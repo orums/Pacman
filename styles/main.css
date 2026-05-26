@@ -1,0 +1,186 @@
+/* ===========================================
+   Pacman iPad Game – Main Stylesheet
+   =========================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+:root {
+  --yellow: #FFD700;
+  --blue: #0000CC;
+  --dark: #000014;
+  --red: #FF0000;
+  --pink: #FFB8FF;
+  --cyan: #00FFFF;
+  --orange: #FFB852;
+  --white: #FFFFFF;
+  --font: 'Press Start 2P', 'Courier New', monospace;
+}
+
+html, body {
+  height: 100%;
+  background: var(--dark);
+  color: var(--white);
+  font-family: var(--font);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ---- App Layout ---- */
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  padding: 8px;
+  gap: 8px;
+}
+
+/* ---- HUD ---- */
+header {
+  width: 100%;
+  text-align: center;
+}
+
+header h1 {
+  font-size: clamp(14px, 3vw, 22px);
+  color: var(--yellow);
+  letter-spacing: 4px;
+  text-shadow: 0 0 10px var(--yellow);
+  margin-bottom: 6px;
+}
+
+#hud {
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 24px);
+  font-size: clamp(8px, 1.5vw, 12px);
+  color: var(--white);
+}
+
+#hud strong {
+  color: var(--yellow);
+}
+
+/* ---- Canvas ---- */
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#gameCanvas {
+  display: block;
+  border: 2px solid var(--blue);
+  box-shadow: 0 0 20px var(--blue), 0 0 40px rgba(0,0,200,0.3);
+  image-rendering: pixelated;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* ---- Touch D-Pad ---- */
+#dpad {
+  display: none;           /* hidden on desktop */
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+}
+
+@media (pointer: coarse) {
+  #dpad {
+    display: flex;
+  }
+}
+
+#dpad-middle {
+  display: flex;
+  gap: 4px;
+}
+
+#dpad button {
+  width: 64px;
+  height: 64px;
+  font-size: 24px;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,215,0,0.5);
+  border-radius: 12px;
+  color: var(--yellow);
+  cursor: pointer;
+  transition: background 0.1s;
+  -webkit-user-select: none;
+}
+
+#dpad button:active {
+  background: rgba(255,215,0,0.3);
+}
+
+/* ---- Overlay (Start / Game Over / Win) ---- */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 20, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+#overlay.hidden {
+  display: none;
+}
+
+#overlay-content {
+  text-align: center;
+  padding: 32px;
+  border: 2px solid var(--yellow);
+  border-radius: 12px;
+  background: rgba(0, 0, 30, 0.95);
+  box-shadow: 0 0 30px var(--yellow);
+  max-width: 90vw;
+}
+
+#overlay-title {
+  font-size: clamp(20px, 5vw, 36px);
+  color: var(--yellow);
+  text-shadow: 0 0 15px var(--yellow);
+  margin-bottom: 16px;
+}
+
+#overlay-msg {
+  font-size: clamp(10px, 2vw, 14px);
+  margin-bottom: 24px;
+  color: var(--white);
+}
+
+#btn-start {
+  padding: 14px 32px;
+  font-size: clamp(12px, 2vw, 16px);
+  font-family: var(--font);
+  background: var(--yellow);
+  color: var(--dark);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+#btn-start:hover,
+#btn-start:active {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--yellow);
+}
+
+/* ---- Landscape phone hint ---- */
+@media (max-height: 400px) and (orientation: landscape) {
+  header h1 { display: none; }
+  #dpad button { width: 50px; height: 50px; font-size: 18px; }
+}
