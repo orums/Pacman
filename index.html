@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Pacman – iPad Game</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>🕹️ PACMAN</h1>
+      <div id="hud">
+        <span>Score: <strong id="score">0</strong></span>
+        <span>Level: <strong id="level">1</strong></span>
+        <span>Lives: <strong id="lives">3</strong></span>
+        <span>High: <strong id="highscore">0</strong></span>
+      </div>
+    </header>
+
+    <main>
+      <canvas id="gameCanvas"></canvas>
+    </main>
+
+    <!-- Touch D-Pad (only visible on touch devices) -->
+    <div id="dpad">
+      <button id="btn-up"   aria-label="Up">▲</button>
+      <div id="dpad-middle">
+        <button id="btn-left"  aria-label="Left">◀</button>
+        <button id="btn-right" aria-label="Right">▶</button>
+      </div>
+      <button id="btn-down" aria-label="Down">▼</button>
+    </div>
+
+    <div id="overlay" class="hidden">
+      <div id="overlay-content">
+        <h2 id="overlay-title">PACMAN</h2>
+        <p id="overlay-msg">Tap to Start</p>
+        <button id="btn-start">START</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/maze.js"></script>
+  <script src="src/pacman.js"></script>
+  <script src="src/ghost.js"></script>
+  <script src="src/input.js"></script>
+  <script src="src/game.js"></script>
+</body>
+</html>
